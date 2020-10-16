@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql
+    ports:
+      - '3306:3306'
+    environment:
+        MYSQL_DATABASE: 'diario-pet'
+        MYSQL_USER: 'leomenezes'
+        MYSQL_PASSWORD: '123456'
+        MYSQL_ROOT_PASSWORD: '123456'
+  app:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
