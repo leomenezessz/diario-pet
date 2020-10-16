@@ -1,2 +1,2 @@
-# DiarioDoPet
-Um aplicação Django web para controlar e manter histórico dos pets e realizar publicações sobre seu dia a dia em uma timeline.
+# Diário Pet
+Um aplicação Django web para centralizar e manter o histórico dos seus pets.
