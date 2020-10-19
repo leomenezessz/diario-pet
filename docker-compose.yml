@@ -2,14 +2,16 @@ version: "3.8"
 
 services:
   db:
-    image: mysql
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     ports:
       - '3306:3306'
     environment:
+        MYSQL_ROOT_PASSWORD: 'rootpass'
         MYSQL_DATABASE: 'diario-pet'
         MYSQL_USER: 'leomenezes'
-        MYSQL_PASSWORD: '123456'
-        MYSQL_ROOT_PASSWORD: '123456'
+        MYSQL_PASSWORD: 'meiko'
   app:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
