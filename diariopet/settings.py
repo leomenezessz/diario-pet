@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'diariopet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'diario-pet',
+        'NAME': 'diario_pet',
         'USER': 'leomenezes',
         'PASSWORD': 'meiko',
         'HOST': 'db',
