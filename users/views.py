@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
-
-# Create your views here.
+from users.forms import UserRegisterForm
 
 
 def register(request):
-    return HttpResponse("Setting Up!")
+    if request.method == "POST":
+        pass
+    else:
+        context = {"form": UserRegisterForm()}
+        return render(request, "users/register.html", context)
