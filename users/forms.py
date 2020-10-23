@@ -1,51 +1,48 @@
 from django import forms
-from bootstrap_datepicker_plus import DateTimePickerInput
+from django.contrib.auth.models import User
 
 
 class UserRegisterForm(forms.Form):
-    picture = forms.ImageField(label="Foto de perfil")
-    first_name = forms.CharField(
-        label="Primeiro nome",
+    username = forms.CharField(
+        label="Username",
         max_length=100,
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Ex.: Lully"}),
-    )
-    second_name = forms.CharField(
-        label="Segundo nome",
-        max_length=100,
-        required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Ex.: Santos"}),
+        widget=forms.TextInput(attrs={"placeholder": "Ex.: Lully@13"}),
+        error_messages={"required": "O nome do usuário não pode estar vazio."}
     )
     email = forms.EmailField(
         label="Email",
         max_length=100,
         required=True,
         widget=forms.EmailInput(attrs={"placeholder": "Ex.: email@gmail.com"}),
+        error_messages={"required": "O email precisa ser preenchido."}
     )
+
     password = forms.CharField(
         label="Senha",
         max_length=100,
         required=True,
         widget=forms.PasswordInput(attrs={"placeholder": "Ex.: GHJlP*&"}),
+        error_messages={"required": "A senha precisa ser informada."}
     )
-    cellphone = forms.CharField(
-        label="Telefone ou celular",
-        max_length=15,
+
+    repeat_password = forms.CharField(
+        label="Repetir senha",
+        max_length=100,
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Ex.: (DDD) + Número"}),
+        widget=forms.PasswordInput(attrs={"placeholder": "Ex.: GHJlP*&"}),
+        error_messages={"required": "A senha repetida precisa ser informada."}
     )
-    birthday = forms.DateField(
-        label="Data de aniversário",
-        input_formats=["%d/%m/%Y"],
-        required=True,
-        widget=DateTimePickerInput(
-            format="%d/%m/%Y",
-            attrs={"placeholder": "Informa a data de seu aniversário"},
-        ),
-    )
-    address = forms.CharField(
-        label="Endereço",
-        max_length=200,
-        required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Ex.: Rua Pinheiros, 199"}),
-    )
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if User.objects.filter(username=username).exists():
+            self.add_error("username", f"O usuário {username} já existe.")
+        return username
+
+    def clean(self):
+        password = self.cleaned_data.get("password")
+        repeated_password = self.cleaned_data.get("repeat_password")
+
+        if password != repeated_password:
+            self.add_error("repeat_password", "As senhas devem ser iguais.")
