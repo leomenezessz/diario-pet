@@ -27,9 +27,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
+
+
+BOOTSTRAP4 = {
+    "include_jquery": True,
+}
 INSTALLED_APPS = [
-    "users.apps.UsersConfig",
-    "pets.apps.PetsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -37,13 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "bootstrap_datepicker_plus",
-    "bootstrap4",
+    "users.apps.UsersConfig",
+    "pets.apps.PetsConfig",
+    "species.apps.SpeciesConfig",
 ]
-
-
-BOOTSTRAP4 = {
-    "include_jquery": True,
-}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

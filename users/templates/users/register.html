@@ -1,17 +1,11 @@
-{% load bootstrap4 %}
 
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
 
 <div class="container">
     <form action="/users/register/" method="post" class="form">
       {% csrf_token %}
-      {% bootstrap_form form  layout='horizontal' %}
-        {{ form.media }}
-      {% buttons %}
+        {{ form.as_p }}
         <button type="submit" class="btn btn-primary">
-          Cadastrar
+          Cadastrar Usuário
         </button>
-      {% endbuttons %}
     </form>
 </div>
