@@ -1,0 +1,10 @@
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD 'root'
+ENV MYSQL_DATABASE 'diario_pet'
+ENV MYSQL_USER 'leomenezes'
+ENV MYSQL_PASSWORD 'meiko'
+
+CMD ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+
+
