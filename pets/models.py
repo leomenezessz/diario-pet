@@ -1,4 +1,5 @@
 from django.db import models
+from species.models import Breed, Specie
 
 
 class Pet(models.Model):
@@ -6,9 +7,12 @@ class Pet(models.Model):
     GENDERS = (("F", "Fêmea"), ("M", "Macho"))
     picture = models.ImageField(upload_to="pets/images/")
     name = models.CharField(max_length=100)
-    birthday = models.DateField()
-    specie = models.CharField(max_length=100)
-    race = models.CharField(max_length=100)
+    birthday = models.DateField(auto_now=True)
     color = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDERS)
     size = models.CharField(max_length=1, choices=SIZES)
+    breed = models.ForeignKey(Breed, on_delete=models.DO_NOTHING)
+    specie = models.ForeignKey(Specie, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.name

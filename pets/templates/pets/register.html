@@ -1,0 +1,45 @@
+
+<form action="/pets/register/" method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary" id="id-register-button">
+        Cadastrar Pet
+    </button>
+</form>
+
+<script>
+
+$( "#id_specie" ).change(function() {
+  getBreeds();
+});
+
+$( document ).ready(function() {
+    getBreeds();
+});
+
+function getBreeds(){
+    $.ajax({
+    url: 'http://localhost:8000/pets/breeds/',
+    type: 'post',
+    dataType: "json",
+     data: {
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        specie : $("#id_specie option:selected").text()
+    },
+    success: function(data) {
+        $("#id_breed").empty()
+        $.each(data.breeds, function(key,value) {
+          $("#id_breed").append($("<option></option>")
+             .attr("value", key).text(value));
+        });
+    },
+    failure: function(data) {
+        alert('Não foi possível recuperar as raças para o animal selecionado.');
+    }
+});
+}
+
+
+</script>
+
+{% endblock %}
