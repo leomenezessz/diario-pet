@@ -19,7 +19,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <!-- Static Styles -->
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-
+    <!-- Google Pacific Font -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
@@ -38,7 +38,7 @@
                     <form action="/users/login/" method="post" class="form form--with-card">
                         {% csrf_token %}
                         <div class="fieldWrapper md-form">
-                            <label for="id_username">Usuário</label>
+                            <label for="{{form.username.id_for_label}}">Usuário</label>
                             {{form.username}}
                             {% if form.username.errors %}
                             {% for error in form.username.errors %}
@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="fieldWrapper md-form">
-                            <label for="id_password">Senha</label>
+                            <label for="{{form.password.id_for_label}}">Senha</label>
                             {{form.password}}
                             {% if form.password.errors %}
                             {% for error in form.password.errors %}
