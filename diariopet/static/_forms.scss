@@ -1,0 +1,26 @@
+.form {
+    &--with-card {
+        input:focus {
+            box-shadow: 0 1px 0 0 $primary-color-dark !important;
+            border-bottom: 1px solid $primary-color-dark !important;
+        }
+    }
+
+    &--no-card {
+        input:focus {
+            box-shadow: 0 1px 0 0 $accent-color !important;
+            border-bottom: 1px solid $accent-color !important;
+        }
+
+        input{
+            color: $primary-color-text !important; 
+        }
+
+        label {
+            color: $primary-color-text;
+            &.active {
+                color: $accent-color;
+            }
+        }
+    }
+}

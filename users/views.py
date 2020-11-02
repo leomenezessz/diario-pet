@@ -1,5 +1,3 @@
-from logging import getLogger
-
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -34,6 +32,9 @@ def register(request):
                 auth.login(request, auth_user)
                 return render(request, "users/home.html", {"user": auth_user})
 
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] = "form-control is-invalid"
+
         return render(request, "users/register.html", {"form": form})
     else:
         return render(request, "users/register.html", {"form": UserRegisterForm()})
@@ -63,6 +64,7 @@ def login(request):
         return render(request, "users/login.html", {"form": UserLoginForm()})
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return render(request, "users/login.html", {"form": UserLoginForm()})
@@ -71,5 +73,4 @@ def logout(request):
 @login_required
 def profile(request):
     pets = UserProfile.objects.get(user=request.user).pets.all()
-    getLogger().warning(pets)
     return render(request, "users/profile.html", {"pets": pets})

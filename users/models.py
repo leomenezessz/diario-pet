@@ -14,4 +14,4 @@ class UserProfile(models.Model):
     pets = models.ManyToManyField(Pet)
 
     def __str__(self):
-        return self.user.name
+        return str(self.user)

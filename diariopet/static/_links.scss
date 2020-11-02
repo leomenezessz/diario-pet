@@ -1,0 +1,8 @@
+.link {
+    color: $accent-color;
+    padding: 1em;
+  &:hover {
+    color: $primary-color-text;
+    border-radius: 2em;
+  }
+}

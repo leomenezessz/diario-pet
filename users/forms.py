@@ -9,14 +9,14 @@ class UserRegisterForm(forms.Form):
         label="Username: ",
         max_length=100,
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Ex.: Lully@13"}),
+        widget=forms.TextInput(attrs={"class": "form-control "}),
         error_messages={"required": "O nome do usuário não pode estar vazio."},
     )
     email = forms.EmailField(
         label="Email: ",
         max_length=100,
         required=True,
-        widget=forms.EmailInput(attrs={"placeholder": "Ex.: email@gmail.com"}),
+        widget=forms.EmailInput(attrs={"class": "form-control "}),
         error_messages={"required": "O email precisa ser preenchido."},
     )
 
@@ -24,7 +24,7 @@ class UserRegisterForm(forms.Form):
         label="Senha: ",
         max_length=100,
         required=True,
-        widget=forms.PasswordInput(attrs={"placeholder": "Ex.: GHJlP*&"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control "}),
         error_messages={"required": "A senha precisa ser informada."},
     )
 
@@ -32,7 +32,7 @@ class UserRegisterForm(forms.Form):
         label="Repetir senha: ",
         max_length=100,
         required=True,
-        widget=forms.PasswordInput(attrs={"placeholder": "Ex.: GHJlP*&"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control "}),
         error_messages={"required": "A senha repetida precisa ser informada."},
     )
 
@@ -54,7 +54,7 @@ class UserLoginForm(forms.Form):
     username = forms.CharField(
         max_length=100,
         required=True,
-        widget=TextInput(attrs={"class": "form-control"}),
+        widget=TextInput(attrs={"class": "form-control "}),
         error_messages={"required": "O nome do usuário precisa ser informado."},
     )
 

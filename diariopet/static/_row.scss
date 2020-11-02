@@ -1,0 +1,21 @@
+.row-responsive {
+    @media (min-width: 800px) {
+        margin-left: 10em;
+        margin-right: 10em;
+    }
+
+    @media (min-width: 991px) {
+        margin-left: 14em;
+        margin-right: 14em;
+    }
+
+    @media (min-width: 1200px) {
+        margin-left: 16em;
+        margin-right: 16em;
+    }
+
+    @media (min-width: 1919px) {
+        margin-left: 9em;
+        margin-right: 9em;
+    }
+}

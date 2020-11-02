@@ -1,0 +1,56 @@
+.brand {
+    color: $accent-color;
+
+    &__icon {
+        @media (max-width: 575px) {
+            padding-top: 2em;
+            font-size: 2em;
+        }
+
+        @media (min-width: 768px) {
+            font-size: 3em;
+            padding-top: 1em;
+        }
+
+        @media (min-width: 991px) {
+            font-size: 3em;
+            padding-top: 2em;
+        }
+
+        @media (min-width: 1200px) {
+            font-size: 4em;
+            padding-top: 2em;
+        }
+
+        @media (min-width: 1919px) {
+            font-size: 6em;
+            padding-top: 2em;
+        }
+    }
+
+    &__text {
+        font-family: $h1-titles-brand-pacifico;
+
+        @media (max-width: 575px) {
+            font-size: 2em;
+            padding-bottom: 1em;
+        }
+
+        @media (min-width: 768px) {
+            font-size: 2em;
+            padding-bottom: 1em;
+        }
+
+        @media (min-width: 991px) {
+            font-size: 3em;
+        }
+
+        @media (min-width: 1200px) {
+            font-size: 3em;
+        }
+
+        @media (min-width: 1919px) { 
+              font-size: 4em; 
+        }
+    }
+}

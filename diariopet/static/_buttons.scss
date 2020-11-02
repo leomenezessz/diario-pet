@@ -1,0 +1,8 @@
+
+.button-form-accent {
+    background-color: $accent-color;
+    color: $primary-color-dark;
+    &:hover{
+        color: $primary-color-dark;
+    }
+}
