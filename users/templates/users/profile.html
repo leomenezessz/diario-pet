@@ -1,33 +1,119 @@
+{% extends "diariopet/base.html" %}
 
+{% block content %}
 
-<title>Profile</title>
-<div class="container-fluid">
+<body>
 
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary-dark">
+    <a class="brand brand__nav" href="#">Diário Pet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:home' %}">Home
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'users:profile' %}">Perfil</a>
+                <span class="sr-only">(current)</span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Meus Pets</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item avatar dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+                         alt="avatar image" height="35"></a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                    <a class="dropdown-item" href="{% url 'users:profile' %}">Meu Perfil</a>
+                    <a class="dropdown-item" href="{% url 'pets:register' %}">Cadastrar Pet</a>
+                    <a class="dropdown-item" href="{% url 'users:logout' %}">Sair</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->
 
-    <h2>Olá, {{user.username}}</h2>
-    <a></a>
-    <img src="{{users.picture}}">
-    <p>{{user}}</p>
-    <p>{{user.email}}</p>
-    <p>{{user.cellphone}}</p>
-    <p>{{user.birthday}}</p>
-    <p>{{user.address}}</p>
-    {% for pet in pets %}
-       <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+<div class="container">
+    <div class="row row-responsive-heights-margin">
+        <div class="col pb-1">
+            <!-- Card Regular -->
+            <div class="card card-cascade">
+                <!-- Card image -->
+                <div class="view view-cascade overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg"
+                         alt="Card image cap">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body card-body-cascade text-center">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><strong>{{ user.username }}</strong></h4>
+                    <!-- Subtitle -->
+                    <h6 class="font-weight-bold indigo-text py-2">Pets</h6>
+                    <!-- Text -->
+                    <p class="card-text">
+                        {% if pets.size %}
+                        {{pets.size}}
+                        {% else %}
+                        Nenhum pet cadastrado.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <!-- Card Regular -->
+        </div>
+        <div class="col-sm">
+            <div class="list-group-flush">
+                <div class="list-group-item">
+                    <p class="mb-0"><i class="fas fa-envelope fa-2x mr-4 white p-2 text-primary-dark"
+                                       aria-hidden="true"></i>{{user.email}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="mb-0"><i class="fas fa-mobile-alt fa-2x mr-4 white p-2 text-primary-dark"
+                                       aria-hidden="true"></i>
+                        {% if user.cellphone %}
+                        {{user.cellphone}}
+                        {% else %}
+                        Não informado.
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="list-group-item">
+                    <p class="mb-0"><i class="fas fa-birthday-cake fa-2x mr-4 white p-2 text-primary-dark"
+                                       aria-hidden="true"></i>
+                        {% if user.birthday %}
+                        {{user.birthday}}
+                        {% else %}
+                        Não informado.
+                        {% endif %}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="mb-0"><i class="fas fa-location-arrow fa-2x mr-4 white p-2 text-primary-dark"
+                                       aria-hidden="true"></i>
+                        {% if user.address %}
+                        {{user.address}}
+                        {% else %}
+                        Não informado.
+                        {% endif %}</p>
+                </div>
+                <button class="btn button-form-accent mt-4 btn-lg btn-block">Editar</button>
+            </div>
+        </div>
     </div>
 
-    {% endfor %}
-
 </div>
-
-
-
-
-
-
+</body>
+{% endblock %}

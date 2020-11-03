@@ -93,6 +93,11 @@
     font-size: 4em;
   }
 }
+.brand__nav {
+  padding-right: 1em;
+  font-family: "Pacifico", cursive;
+  font-size: 1em;
+}
 
 @media (min-width: 800px) {
   .card-login {
@@ -210,3 +215,36 @@
     margin-right: 9em;
   }
 }
+
+@media (max-width: 575px) {
+  .row-responsive-heights-margin {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+  }
+}
+@media (min-width: 800px) {
+  .row-responsive-heights-margin {
+    margin-top: 3em !important;
+    margin-bottom: 3em !important;
+  }
+}
+@media (min-width: 991px) {
+  .row-responsive-heights-margin {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+  }
+}
+@media (min-width: 1200px) {
+  .row-responsive-heights-margin {
+    margin-top: 2em !important;
+    margin-bottom: 1em !important;
+  }
+}
+@media (min-width: 1919px) {
+  .row-responsive-heights-margin {
+    margin-top: 2em !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

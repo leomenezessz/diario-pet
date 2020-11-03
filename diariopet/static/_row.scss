@@ -19,3 +19,31 @@
         margin-right: 9em;
     }
 }
+
+
+.row-responsive-heights-margin {
+   @media (max-width: 575px) {
+         margin-top: 1em !important;
+         margin-bottom: 1em !important;
+    }
+
+     @media (min-width: 800px) {
+         margin-top: 3em !important;
+        margin-bottom: 3em !important;
+    }
+
+    @media (min-width: 991px) {
+         margin-top: 1em !important ;
+         margin-bottom: 1em!important;
+    }
+
+    @media (min-width: 1200px) {
+         margin-top: 2em !important;
+         margin-bottom: 1em !important;
+    }
+
+    @media (min-width: 1919px) {
+         margin-top: 2em !important;
+         margin-bottom: 1em !important;
+    }
+}

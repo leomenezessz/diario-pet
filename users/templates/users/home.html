@@ -1,9 +1,46 @@
+{% extends "diariopet/base.html" %}
 
+{% block content %}
+
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary-dark">
+  <a class="brand brand__nav" href="#">Diário Pet</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'users:home' %}">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users:profile' %}">Perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Meus Pets</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item avatar dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+               alt="avatar image" height="35"></a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+          <a class="dropdown-item" href="{% url 'users:profile' %}">Meu Perfil</a>
+          <a class="dropdown-item" href="{% url 'pets:register' %}">Cadastrar Pet</a>
+          <a class="dropdown-item" href="{% url 'users:logout' %}">Sair</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+
+<body>
 <div class="container">
-    <h2>Olá, {{user.username}}</h2>
-    <div class="container">
-        <button type="submit" class="btn btn-primary" onclick="location.href='{% url 'pets:register' %}'">Cadastrar Pet</button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='{% url 'users:logout' %}'">Logout</button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='{% url 'users:profile' %}'">Profile</button>
-    </div>
 </div>
+{% endblock %}
