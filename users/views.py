@@ -1,7 +1,10 @@
+from logging import getLogger
+
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.forms import model_to_dict
 from django.shortcuts import render
-from users.forms import UserRegisterForm, UserLoginForm
+from users.forms import UserRegisterForm, UserLoginForm, UserUpdateForm
 from django.contrib.auth.models import User
 from users.models import UserProfile
 
@@ -42,7 +45,8 @@ def register(request):
 
 @login_required
 def home(request):
-    return render(request, "users/home.html")
+    user_profile = UserProfile.objects.get(user=request.user.id)
+    return render(request, "users/home.html", {"user": user_profile})
 
 
 def login(request):
@@ -72,5 +76,37 @@ def logout(request):
 
 @login_required
 def profile(request):
+    user_profile = UserProfile.objects.get(user=request.user.id)
     pets = UserProfile.objects.get(user=request.user).pets.all()
-    return render(request, "users/profile.html", {"pets": pets})
+    return render(request, "users/profile.html", {"pets": pets, "profile": user_profile})
+
+
+@login_required
+def update(request):
+    if request.method == "POST":
+        form = UserUpdateForm(request.POST)
+        if form.is_valid():
+            profile_data = UserProfile.objects.get(user=request.user.id)
+            profile_data.user.email = form.cleaned_data["email"]
+            profile_data.user.first_name = form.cleaned_data["first_name"]
+            profile_data.user.last_name = form.cleaned_data["second_name"]
+            profile_data.user.save()
+
+            if request.FILES:
+                profile_data.picture = request.FILES.get('picture')
+
+            profile_data.cellphone = form.cleaned_data["cellphone"]
+            profile_data.birthday = form.cleaned_data["birthday"]
+            profile_data.address = form.cleaned_data["address"]
+            profile_data.save()
+            return profile(request)
+    else:
+        profile_data = UserProfile.objects.get(user=request.user.id)
+        user = {
+            "email": profile_data.user.email,
+            "first_name": profile_data.user.first_name,
+            "second_name": profile_data.user.last_name
+        }
+        user.update(model_to_dict(profile_data))
+        form = UserUpdateForm(user)
+        return render(request, "users/update.html", {"form": form})

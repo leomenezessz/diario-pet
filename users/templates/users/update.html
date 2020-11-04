@@ -1,0 +1,96 @@
+{% extends "diariopet/base.html" %}
+
+{% block content %}
+<body class="bg-primary-dark">
+<div class="container">
+    <div class="row justify-content-center row-responsive">
+        <div class="col">
+            <h1 class="title">Atualizar  perfil</h1>
+            <form action="/users/update/" method="post" enctype="multipart/form-data" class="form form--no-card">
+                {% csrf_token %}
+                 <div class="fieldWrapper md-form">
+                    {{form.picture}}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="fieldWrapper md-form">
+                    <label for="{{form.email.id_for_label}}">Email</label>
+                    {{form.email}}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="fieldWrapper md-form">
+                    <label for="{{form.first_name.id_for_label}}">Primeiro Nome</label>
+                    {{form.first_name}}
+                    {% if form.first_name.errors %}
+                        {% for error in form.first_name.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="fieldWrapper md-form">
+                    <label for="{{form.second_name.id_for_label}}">Segundo Nome</label>
+                    {{form.second_name}}
+                    {% if form.second_name.errors %}
+                        {% for error in form.second_name.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                  <div class="fieldWrapper md-form">
+                    <label for="{{form.cellphone.id_for_label}}">Celular</label>
+                    {{form.cellphone}}
+                    {% if form.cellphone.errors %}
+                        {% for error in form.cellphone.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                  <div class="fieldWrapper md-form">
+                    <label for="{{form.address.id_for_label}}">Endereço</label>
+                    {{form.address}}
+                    {% if form.address.errors %}
+                        {% for error in form.address.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                 <div class="fieldWrapper md-form">
+                    <label for="{{form.birthday.id_for_label}}">Aniversário</label>
+                    {{form.birthday}}
+                    {% if form.birthday.errors %}
+                        {% for error in form.birthday.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn button-form-accent btn-lg btn-block">
+                    Atualizar Perfil
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
