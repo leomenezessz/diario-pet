@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "pets.apps.PetsConfig",
     "species.apps.SpeciesConfig",
+    "sorl.thumbnail"
 ]
 
 MIDDLEWARE = [

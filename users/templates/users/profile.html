@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load thumbnail %}
+
 <body>
 
 <!--Navbar -->
@@ -49,10 +51,9 @@
             <div class="card card-cascade">
                 <!-- Card image -->
                 <div class="view view-cascade overlay">
-                    <figure>
-                        <img class="card-img-top" src="{{profile.picture.url}}"
-                             alt="Card image cap">
-                    </figure>
+                    {% thumbnail profile.picture "400x400" crop="center" as im %}
+                        <img class="card-img-top" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="Card image cap">
+                    {% endthumbnail %}
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>

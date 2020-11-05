@@ -1,5 +1,3 @@
-from logging import getLogger
-
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.forms import model_to_dict
@@ -33,7 +31,7 @@ def register(request):
 
             if auth_user is not None:
                 auth.login(request, auth_user)
-                return render(request, "users/home.html", {"user": auth_user})
+                return home(request)
 
         for field in form.errors:
             form[field].field.widget.attrs['class'] = "form-control is-invalid"

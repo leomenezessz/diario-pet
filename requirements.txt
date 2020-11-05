@@ -3,5 +3,6 @@ mysqlclient==2.0.1
 Pillow==8.0.0
 django-bootstrap-datepicker-plus==3.0.5
 black==20.8b1
+sorl-thumbnail
 
 
