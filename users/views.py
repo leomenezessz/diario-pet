@@ -13,11 +13,14 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
+            name = form.cleaned_data["first_name"]
+            email = form.cleaned_data["email"]
 
             user = User.objects.create_user(
-                email=form.cleaned_data["email"],
+                email=email,
                 username=username,
                 password=password,
+                first_name=name,
             )
 
             user.save()
@@ -34,7 +37,7 @@ def register(request):
                 return home(request)
 
         for field in form.errors:
-            form[field].field.widget.attrs['class'] = "form-control is-invalid"
+            form[field].field.widget.attrs["class"] = "form-control is-invalid"
 
         return render(request, "users/register.html", {"form": form})
     else:
@@ -43,7 +46,7 @@ def register(request):
 
 @login_required
 def home(request):
-    user_profile = UserProfile.objects.get(user=request.user.id)
+    user_profile = UserProfile.objects.get(id=request.user.id)
     return render(request, "users/home.html", {"user": user_profile})
 
 
@@ -56,10 +59,10 @@ def login(request):
                 password=form.cleaned_data["password"],
             )
             auth.login(request, user)
-            return render(request, "users/home.html", {"user": user})
+            return home(request)
 
         for field in form.errors:
-            form[field].field.widget.attrs['class'] = "form-control is-invalid"
+            form[field].field.widget.attrs["class"] = "form-control is-invalid"
 
         return render(request, "users/login.html", {"form": form})
     else:
@@ -74,9 +77,12 @@ def logout(request):
 
 @login_required
 def profile(request):
-    user_profile = UserProfile.objects.get(user=request.user.id)
-    pets = UserProfile.objects.get(user=request.user).pets.all()
-    return render(request, "users/profile.html", {"pets": pets, "profile": user_profile})
+    user_id = request.user.id
+    user_profile = UserProfile.objects.get(id=user_id)
+    pets = UserProfile.objects.get(user=user_id).pets.all()
+    return render(
+        request, "users/profile.html", {"pets": pets, "profile": user_profile}
+    )
 
 
 @login_required
@@ -91,7 +97,8 @@ def update(request):
             profile_data.user.save()
 
             if request.FILES:
-                profile_data.picture = request.FILES.get('picture')
+                profile_data.picture.delete()
+                profile_data.picture = request.FILES.get("picture")
 
             profile_data.cellphone = form.cleaned_data["cellphone"]
             profile_data.birthday = form.cleaned_data["birthday"]
@@ -103,7 +110,7 @@ def update(request):
         user = {
             "email": profile_data.user.email,
             "first_name": profile_data.user.first_name,
-            "second_name": profile_data.user.last_name
+            "second_name": profile_data.user.last_name,
         }
         user.update(model_to_dict(profile_data))
         form = UserUpdateForm(user)

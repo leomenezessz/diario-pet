@@ -20,6 +20,17 @@
                     {% endif %}
                 </div>
                 <div class="fieldWrapper md-form">
+                    <label for="{{form.first_name.id_for_label}}">Primeiro Nome</label>
+                    {{form.first_name}}
+                    {% if form.first_name.errors %}
+                    {% for error in form.first_name.errors %}
+                    <div class="invalid-feedback">
+                        {{error}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="fieldWrapper md-form">
                     <label for="{{form.email.id_for_label}}">Email</label>
                     {{form.email}}
                     {% if form.email.errors %}

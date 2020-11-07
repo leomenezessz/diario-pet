@@ -69,10 +69,12 @@
                     <h6 class="font-weight-bold indigo-text py-2">Pets</h6>
                     <!-- Text -->
                     <p class="card-text">
-                        {% if pets.size %}
-                        {{pets.size}}
+                        {% if pets %}
+                            {% for pet in pets %}
+                                {{pet.name}} <br>
+                            {% endfor %}
                         {% else %}
-                        Nenhum pet cadastrado.
+                            Nenhum pet cadastrado.
                         {% endif %}
                     </p>
                 </div>

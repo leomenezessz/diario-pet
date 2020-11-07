@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.forms import TextInput, CharField, DateField, IntegerField
+from django.forms import TextInput, CharField, DateField
 
 
 class UserRegisterForm(forms.Form):
@@ -10,6 +10,11 @@ class UserRegisterForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={"class": "form-control "}),
         error_messages={"required": "O nome do usuário não pode estar vazio."},
+    )
+    first_name = CharField(
+        required=True,
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+        error_messages={"required": "É necessário informar o primeiro nome."},
     )
     email = forms.EmailField(
         max_length=100,
@@ -75,15 +80,26 @@ class UserLoginForm(forms.Form):
 
 
 class UserUpdateForm(forms.Form):
-    picture = forms.ImageField(required=False, widget=forms.FileInput(attrs={"class": "file-field", "type": "file"}))
-    first_name = CharField(required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
-    second_name = CharField(required=False, widget=forms.TextInput(attrs={"class": "form-control "}))
+    picture = forms.ImageField(
+        required=False,
+        widget=forms.FileInput(attrs={"class": "file-field", "type": "file"}),
+    )
+    first_name = CharField(
+        required=True, widget=forms.TextInput(attrs={"class": "form-control"})
+    )
+    second_name = CharField(
+        required=False, widget=forms.TextInput(attrs={"class": "form-control "})
+    )
     birthday = DateField(required=False, widget=forms.SelectDateWidget())
-    address = CharField(required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    address = CharField(
+        required=False, widget=forms.TextInput(attrs={"class": "form-control"})
+    )
     email = forms.EmailField(
         max_length=100,
         required=True,
         widget=forms.EmailInput(attrs={"class": "form-control "}),
-        error_messages={"required": "O email precisa ser preenchido."}
+        error_messages={"required": "O email precisa ser preenchido."},
     )
-    cellphone = CharField(required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    cellphone = CharField(
+        required=False, widget=forms.TextInput(attrs={"class": "form-control"})
+    )
