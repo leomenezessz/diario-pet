@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if pets %}
+{% for pet in pets %}
+<br>
+Nome:{{pet.name}}
+Genêro :{{pet.gender}}
+Niver : {{pet.birthday}}
+Raça : {{pet.breed}}
+Specie: {{pet.specie}}
+    {% if pet.picture %}
+        Foto :<img src="{{pet.picture.url}}" width="300px" height="300px">
+    {% endif %}
+<br>
+
+{% endfor %}
+{% else %}
+<p>Nenhum pet cadastrado.</p>
+{% endif %}
+</body>
+</html>

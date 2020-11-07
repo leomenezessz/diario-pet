@@ -21,4 +21,5 @@ app_name = "pets"
 urlpatterns = [
     path("register/", views.register, name="register"),
     path("breeds/", views.breeds, name="breeds"),
+    path("list/", views.list, name="list"),
 ]

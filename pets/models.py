@@ -7,7 +7,7 @@ class Pet(models.Model):
     GENDERS = (("F", "Fêmea"), ("M", "Macho"))
     picture = models.ImageField(upload_to="pets/images/")
     name = models.CharField(max_length=100)
-    birthday = models.DateField(auto_now=True)
+    birthday = models.DateField(blank=True, null=True)
     color = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDERS)
     size = models.CharField(max_length=1, choices=SIZES)

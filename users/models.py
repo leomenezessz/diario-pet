@@ -1,7 +1,6 @@
 import os
 import pathlib
 from uuid import uuid4
-
 from django.contrib.auth.models import User
 from django.db import models
 from pets.models import Pet
